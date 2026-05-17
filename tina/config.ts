@@ -67,14 +67,14 @@ export default defineConfig({
                 ],
               },
               {
-                name: "team-grid", // Changed from team_grid to team-grid to match markdown
+                name: "team-grid",
                 label: "Team Grid",
                 fields: [
                   { type: "string", name: "title", label: "Title" },
                 ],
               },
               {
-                name: "google-form", // Changed from google_form to google-form to match markdown
+                name: "google-form",
                 label: "Google Form",
                 fields: [
                   { type: "string", name: "url", label: "Form URL" },
