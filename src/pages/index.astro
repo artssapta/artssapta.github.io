@@ -1,0 +1,51 @@
+---
+import { getEntry } from 'astro:content';
+import Hero from '../components/blocks/Hero.astro';
+import About from '../components/blocks/About.astro';
+import Events from '../components/blocks/Events.astro';
+import TeamGrid from '../components/blocks/TeamGrid.astro';
+import GoogleForm from '../components/blocks/GoogleForm.astro';
+
+const page = await getEntry('pages', 'home');
+const { blocks } = page.data;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SAPTA | {page.data.title}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lora:wght@400;500&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --sapta-blue: #6091B0;
+            --sapta-navy: #0A2635;
+            --sapta-teal: #2A7396;
+            --text-main: #333333;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background: #ffffff; color: var(--text-main); line-height: 1.6; }
+    </style>
+</head>
+<body>
+    <header style="padding: 20px; border-bottom: 1px solid #eee; text-align: center;">
+        <nav>
+            <strong>SAPTA</strong>
+        </nav>
+    </header>
+
+    <main>
+        {blocks.map((block) => {
+            if (block.type === 'hero') return <Hero {...block} />;
+            if (block.type === 'about') return <About {...block} />;
+            if (block.type === 'events') return <Events {...block} />;
+            if (block.type === 'team-grid') return <TeamGrid {...block} />;
+            if (block.type === 'google-form') return <GoogleForm {...block} />;
+        })}
+    </main>
+
+    <footer style="background: #0A2635; color: white; padding: 40px; text-align: center; margin-top: 60px;">
+        <p>Contact us: artssapta@gmail.com</p>
+    </footer>
+</body>
+</html>

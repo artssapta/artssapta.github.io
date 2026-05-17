@@ -1,0 +1,47 @@
+collections_config:
+  pages:
+    path: src/content/pages
+    output: true
+    icon: description
+    schema:
+      parse_body: true
+  team:
+    path: src/content/team
+    output: false
+    icon: person
+
+_inputs:
+  color:
+    type: color
+
+_structures:
+  blocks:
+    values:
+      - label: Hero Section
+        value:
+          type: hero
+          title: New Hero
+          subtitle: Hero subtitle
+          color: "#6091B0"
+      - label: About Section
+        value:
+          type: about
+          title: About Us
+          text: Your text here
+          image: /assets/placeholder.png
+          imageSide: right
+      - label: Team Grid
+        value:
+          type: team-grid
+          title: Meet the Team
+      - label: Events Section
+        value:
+          type: events
+          title: Events
+          flyerImage: /assets/flyer_image.png
+          color: "#2A7396"
+      - label: Google Form
+        value:
+          type: google-form
+          url: https://docs.google.com/forms/...
+          height: 800px
