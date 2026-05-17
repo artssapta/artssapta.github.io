@@ -1,0 +1,13 @@
+---
+const { heading, text, alignment = "center" } = Astro.props;
+---
+<div class="text-block" style={`text-align: ${alignment};`}>
+    {heading && <h2>{heading}</h2>}
+    <p>{text}</p>
+</div>
+
+<style>
+    .text-block { max-width: 800px; margin: 40px auto; padding: 20px; }
+    h2 { font-family: 'Playfair Display', serif; margin-bottom: 15px; color: #0A2635; }
+    p { font-size: 1.1rem; color: #333; }
+</style>
