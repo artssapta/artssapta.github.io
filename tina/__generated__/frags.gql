@@ -1,0 +1,39 @@
+fragment PagesParts on Pages {
+  __typename
+  title
+  blocks {
+    __typename
+    ... on PagesBlocksHero {
+      title
+      subtitle
+      color
+    }
+    ... on PagesBlocksAbout {
+      title
+      text
+      image
+      imageSide
+    }
+    ... on PagesBlocksEvents {
+      title
+      flyerImage
+      color
+    }
+    ... on PagesBlocksTeam_grid {
+      title
+    }
+    ... on PagesBlocksGoogle_form {
+      url
+      height
+    }
+  }
+}
+
+fragment TeamParts on Team {
+  __typename
+  name
+  role
+  photo
+  order
+  body
+}

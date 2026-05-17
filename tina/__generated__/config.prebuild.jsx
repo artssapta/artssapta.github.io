@@ -1,21 +1,21 @@
+// tina/config.ts
 import { defineConfig } from "tinacms";
-
-// Your hosting provider will flash an id here
-const branch = process.env.HEAD || process.env.VERCEL_GIT_COMMIT_REF || "main";
-
-export default defineConfig({
+var branch = process.env.HEAD || process.env.VERCEL_GIT_COMMIT_REF || "main";
+var config_default = defineConfig({
   branch,
-  clientId: null, // Get this from tina.io
-  token: null, // Get this from tina.io
+  clientId: null,
+  // Get this from tina.io
+  token: null,
+  // Get this from tina.io
   build: {
     outputFolder: "admin",
-    publicFolder: "public",
+    publicFolder: "public"
   },
   media: {
     tina: {
       mediaRoot: "assets",
-      publicFolder: "public",
-    },
+      publicFolder: "public"
+    }
   },
   schema: {
     collections: [
@@ -30,7 +30,7 @@ export default defineConfig({
             name: "title",
             label: "Title",
             isTitle: true,
-            required: true,
+            required: true
           },
           {
             type: "object",
@@ -44,8 +44,8 @@ export default defineConfig({
                 fields: [
                   { type: "string", name: "title", label: "Title" },
                   { type: "string", name: "subtitle", label: "Subtitle" },
-                  { type: "string", name: "color", label: "Background Color", ui: { component: "color" } },
-                ],
+                  { type: "string", name: "color", label: "Background Color", ui: { component: "color" } }
+                ]
               },
               {
                 name: "about",
@@ -54,8 +54,8 @@ export default defineConfig({
                   { type: "string", name: "title", label: "Title" },
                   { type: "string", name: "text", label: "Text", ui: { component: "textarea" } },
                   { type: "image", name: "image", label: "Image" },
-                  { type: "string", name: "imageSide", label: "Image Side", options: ["left", "right"] },
-                ],
+                  { type: "string", name: "imageSide", label: "Image Side", options: ["left", "right"] }
+                ]
               },
               {
                 name: "events",
@@ -63,16 +63,16 @@ export default defineConfig({
                 fields: [
                   { type: "string", name: "title", label: "Title" },
                   { type: "image", name: "flyerImage", label: "Flyer Image" },
-                  { type: "string", name: "color", label: "Header Color", ui: { component: "color" } },
-                ],
+                  { type: "string", name: "color", label: "Header Color", ui: { component: "color" } }
+                ]
               },
               {
                 name: "team_grid",
                 label: "Team Grid",
                 nameOverride: "team-grid",
                 fields: [
-                  { type: "string", name: "title", label: "Title" },
-                ],
+                  { type: "string", name: "title", label: "Title" }
+                ]
               },
               {
                 name: "google_form",
@@ -80,12 +80,12 @@ export default defineConfig({
                 nameOverride: "google-form",
                 fields: [
                   { type: "string", name: "url", label: "Form URL" },
-                  { type: "string", name: "height", label: "Height" },
-                ],
-              },
-            ],
-          },
-        ],
+                  { type: "string", name: "height", label: "Height" }
+                ]
+              }
+            ]
+          }
+        ]
       },
       {
         name: "team",
@@ -98,31 +98,34 @@ export default defineConfig({
             name: "name",
             label: "Name",
             isTitle: true,
-            required: true,
+            required: true
           },
           {
             type: "string",
             name: "role",
-            label: "Role",
+            label: "Role"
           },
           {
             type: "image",
             name: "photo",
-            label: "Photo",
+            label: "Photo"
           },
           {
             type: "number",
             name: "order",
-            label: "Order",
+            label: "Order"
           },
           {
             type: "rich-text",
             name: "body",
             label: "Bio",
-            isBody: true,
-          },
-        ],
-      },
-    ],
-  },
+            isBody: true
+          }
+        ]
+      }
+    ]
+  }
 });
+export {
+  config_default as default
+};
