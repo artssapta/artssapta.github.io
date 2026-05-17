@@ -1,0 +1,30 @@
+---
+import { getCollection } from 'astro:content';
+import TeamMember from '../TeamMember.astro';
+
+const { title } = Astro.props;
+const teamMembers = await getCollection('team');
+const sortedTeam = teamMembers.sort((a, b) => (a.data.order || 99) - (b.data.order || 99));
+---
+<div class="container">
+    {title && <h2 class="section-title">{title}</h2>}
+    {sortedTeam.map(member => (
+        <TeamMember 
+            name={member.data.name} 
+            role={member.data.role} 
+            description={member.body} 
+            image={member.data.photo} 
+        />
+    ))}
+</div>
+
+<style>
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+    .section-title { 
+        font-family: 'Lora', serif; 
+        font-size: 2.5rem; 
+        color: #2A7396; 
+        text-align: center; 
+        margin-bottom: 30px; 
+    }
+</style>

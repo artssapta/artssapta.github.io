@@ -1,0 +1,35 @@
+---
+const { title, text, image, imageSide = "right" } = Astro.props;
+---
+<div class="container">
+    <h2 class="section-title">{title}</h2>
+    <div class={`about-grid ${imageSide}`}>
+        <div class="about-text">
+            <p>{text}</p>
+        </div>
+        <div class="about-img">
+            <img src={image} alt={title} />
+        </div>
+    </div>
+</div>
+
+<style>
+    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; margin-bottom: 60px; }
+    .section-title { 
+        font-family: 'Lora', serif; 
+        font-size: 2.5rem; 
+        color: #2A7396; 
+        text-align: center; 
+        margin-bottom: 30px; 
+    }
+    .about-grid { 
+        display: grid; 
+        grid-template-columns: 1fr 1fr; 
+        gap: 40px; 
+        align-items: center; 
+    }
+    .about-grid.left { direction: rtl; }
+    .about-grid.left .about-text { direction: ltr; }
+    .about-text { font-size: 1.15rem; text-align: justify; }
+    .about-img img { width: 100%; border-radius: 4px; }
+</style>

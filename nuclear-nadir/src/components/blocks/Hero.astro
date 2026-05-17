@@ -1,0 +1,24 @@
+---
+const { title, subtitle, color = "#6091B0" } = Astro.props;
+---
+<section class="hero" style={`background-color: ${color};`}>
+    <h1>{title}</h1>
+    {subtitle && <p>{subtitle}</p>}
+</section>
+
+<style>
+    .hero { 
+        height: 300px; 
+        display: flex; 
+        flex-direction: column; 
+        justify-content: center; 
+        align-items: center; 
+        text-align: center; 
+        color: white; 
+        margin-bottom: 40px; 
+    }
+    .hero h1 { 
+        font-family: 'Playfair Display', serif; 
+        font-size: 5rem; 
+    }
+</style>

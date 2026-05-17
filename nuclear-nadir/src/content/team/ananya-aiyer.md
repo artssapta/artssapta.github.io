@@ -1,11 +1,7 @@
 ---
 name: Ananya Aiyer
 role: President
-school: Dublin Valley High School (DVHS)
-grade: Freshman
-instruments: []
-interests: ["Carnatic music", "piano", "photography", "baking", "community service"]
-photo: ""
+photo: "/assets/image_186af6.png"
 order: 1
 ---
 
