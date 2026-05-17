@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "tinacms dev -c \"astro dev\"",
-    "build": "TINA_PUBLIC_IS_LOCAL=true tinacms build && astro build",
+    "build": "astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
