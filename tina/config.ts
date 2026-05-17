@@ -1,7 +1,7 @@
 import { defineConfig } from "tinacms";
 
 // Your hosting provider will flash an id here
-const branch = process.env.HEAD || process.env.VERCEL_GIT_COMMIT_REF || "main";
+const branch = process.env.HEAD || process.env.VERCEL_GIT_COMMIT_REF || "agent/update-bio";
 
 export default defineConfig({
   branch,
@@ -67,14 +67,14 @@ export default defineConfig({
                 ],
               },
               {
-                name: "team_grid",
+                name: "team-grid", // Changed from team_grid to team-grid to match markdown
                 label: "Team Grid",
                 fields: [
                   { type: "string", name: "title", label: "Title" },
                 ],
               },
               {
-                name: "google_form",
+                name: "google-form", // Changed from google_form to google-form to match markdown
                 label: "Google Form",
                 fields: [
                   { type: "string", name: "url", label: "Form URL" },
