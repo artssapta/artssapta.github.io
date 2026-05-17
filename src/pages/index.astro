@@ -14,7 +14,7 @@ const { blocks } = page.data;
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SAPTA | {page.data.title}</title>
+    <title>SAPTA | Student Artists' Platform</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Lora:wght@400;500&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -22,30 +22,116 @@ const { blocks } = page.data;
             --sapta-navy: #0A2635;
             --sapta-teal: #2A7396;
             --text-main: #333333;
+            --font-serif: 'Lora', serif;
+            --font-heading: 'Playfair Display', serif;
         }
+
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { font-family: 'Inter', sans-serif; background: #ffffff; color: var(--text-main); line-height: 1.6; }
+
+        /* --- Navigation Bar --- */
+        header { background: #ffffff; border-bottom: 1px solid #eee; position: sticky; top: 0; z-index: 1000; padding: 10px 0; }
+        nav { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 20px; }
+        .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; cursor: pointer; }
+        .nav-logo img { height: 40px; }
+        .nav-logo span { font-family: var(--font-serif); font-size: 1.4rem; color: #333; }
+
+        .nav-links { list-style: none; display: flex; gap: 20px; align-items: center; }
+        .nav-links li { cursor: pointer; font-size: 0.95rem; color: #444; font-weight: 500; transition: 0.3s; position: relative; }
+        .nav-links li:hover { color: var(--sapta-teal); }
+
+        /* Dropdowns */
+        .dropdown:after { content: ' ⌵'; font-size: 0.8rem; }
+        .dropdown-menu {
+            display: none;
+            position: absolute;
+            background: #222;
+            min-width: 180px;
+            top: 100%;
+            right: 0;
+            padding: 10px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            list-style: none;
+        }
+        .dropdown-menu li { color: white !important; padding: 10px 20px; border-bottom: 1px solid #333; font-size: 0.85rem; }
+        .dropdown-menu li:hover { background: #333; }
+        .dropdown:hover .dropdown-menu { display: block; }
+
+        /* --- Tab System --- */
+        .tab-content { display: none; padding-bottom: 50px; animation: fadeIn 0.4s ease; }
+        .tab-content.active { display: block; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* --- Footer --- */
+        footer { display: flex; height: 180px; margin-top: 60px; }
+        .footer-main { background-color: var(--sapta-navy); flex: 3; display: flex; flex-direction: column; justify-content: center; align-items: center; color: white; }
+        .footer-accent { background-color: var(--sapta-teal); flex: 1; }
     </style>
 </head>
 <body>
-    <header style="padding: 20px; border-bottom: 1px solid #eee; text-align: center;">
+
+    <header>
         <nav>
-            <strong>SAPTA</strong>
+            <div class="nav-logo" onclick="showTab('home')">
+                <img src="/assets/image_186b79.png" alt="Logo">
+                <span>SAPTA</span>
+            </div>
+            <ul class="nav-links">
+                <li onclick="showTab('home')">About Us</li>
+                <li onclick="showTab('events')">Events</li>
+                <li onclick="showTab('feedback')">Feedback Form</li>
+                <li class="dropdown">Registration
+                    <ul class="dropdown-menu">
+                        <li onclick="showTab('reg-spotlight')">Sapta Spotlight</li>
+                        <li onclick="showTab('reg-group')">Group Registration</li>
+                    </ul>
+                </li>
+                <li class="dropdown">Media
+                    <ul class="dropdown-menu">
+                        <li onclick="showTab('media-past')">Past Events</li>
+                        <li onclick="showTab('media-videos')">Videos/Performances</li>
+                        <li onclick="showTab('media-chronicles')">Chronicles</li>
+                    </ul>
+                </li>
+            </ul>
         </nav>
     </header>
 
-    <main>
+    <main id="home" class="tab-content active">
         {blocks.map((block) => {
             if (block.type === 'hero') return <Hero {...block} />;
             if (block.type === 'about') return <About {...block} />;
-            if (block.type === 'events') return <Events {...block} />;
             if (block.type === 'team-grid') return <TeamGrid {...block} />;
-            if (block.type === 'google-form') return <GoogleForm {...block} />;
         })}
     </main>
 
-    <footer style="background: #0A2635; color: white; padding: 40px; text-align: center; margin-top: 60px;">
-        <p>Contact us: artssapta@gmail.com</p>
+    <section id="events" class="tab-content">
+         {blocks.map((block) => {
+            if (block.type === 'events') return <Events {...block} />;
+        })}
+    </section>
+
+    <section id="feedback" class="tab-content">
+         {blocks.map((block) => {
+            if (block.type === 'google-form') return <GoogleForm {...block} />;
+        })}
+    </section>
+
+    <footer>
+        <div class="footer-main">
+            <h3>Contact us!</h3>
+            <p>Email: artssapta@gmail.com</p>
+        </div>
+        <div class="footer-accent"></div>
     </footer>
+
+    <script is:inline>
+        function showTab(tabId) {
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(content => content.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+    </script>
 </body>
 </html>
