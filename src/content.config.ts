@@ -1,8 +1,8 @@
----
-import { z, defineCollection } from 'astro:content';
+import { defineCollection, z } from 'astro:content';
+import { glob } from 'astro/loaders';
 
 const pages = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: "**/*.md", base: "src/content/pages" }),
   schema: z.object({
     title: z.string(),
     blocks: z.array(z.discriminatedUnion('type', [
@@ -39,13 +39,13 @@ const pages = defineCollection({
 });
 
 const team = defineCollection({
-	type: 'content',
-	schema: z.object({
-		name: z.string(),
-		role: z.string(),
-		photo: z.string().optional(),
-		order: z.number().optional(),
-	}),
+  loader: glob({ pattern: "**/*.md", base: "src/content/team" }),
+  schema: z.object({
+    name: z.string(),
+    role: z.string(),
+    photo: z.string().optional(),
+    order: z.number().optional(),
+  }),
 });
 
 export const collections = { team, pages };
