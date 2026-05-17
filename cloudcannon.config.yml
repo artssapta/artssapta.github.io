@@ -2,9 +2,8 @@ collections_config:
   pages:
     path: src/content/pages
     output: true
+    url: /
     icon: description
-    schema:
-      parse_body: true
   team:
     path: src/content/team
     output: false
@@ -13,6 +12,12 @@ collections_config:
 _inputs:
   color:
     type: color
+  image:
+    type: image
+  flyerImage:
+    type: image
+  photo:
+    type: image
 
 _structures:
   blocks:
@@ -28,7 +33,7 @@ _structures:
           type: about
           title: About Us
           text: Your text here
-          image: /assets/placeholder.png
+          image: /assets/image_186b79.png
           imageSide: right
       - label: Team Grid
         value:
