@@ -11,6 +11,23 @@ export const PagesPartsFragmentDoc = gql`
   title
   blocks {
     __typename
+    ... on PagesBlocksText {
+      heading
+      text
+      alignment
+    }
+    ... on PagesBlocksYoutube {
+      title
+      videoUrl
+    }
+    ... on PagesBlocksGallery {
+      title
+      images {
+        __typename
+        src
+        alt
+      }
+    }
     ... on PagesBlocksHero {
       title
       subtitle

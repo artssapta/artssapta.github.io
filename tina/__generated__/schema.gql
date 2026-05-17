@@ -90,6 +90,27 @@ type Collection {
 
 union DocumentNode = Pages | Team | Folder
 
+type PagesBlocksText {
+  heading: String
+  text: String
+  alignment: String
+}
+
+type PagesBlocksYoutube {
+  title: String
+  videoUrl: String
+}
+
+type PagesBlocksGalleryImages {
+  src: String
+  alt: String
+}
+
+type PagesBlocksGallery {
+  title: String
+  images: [PagesBlocksGalleryImages]
+}
+
 type PagesBlocksHero {
   title: String
   subtitle: String
@@ -118,7 +139,7 @@ type PagesBlocksGoogle_form {
   height: String
 }
 
-union PagesBlocks = PagesBlocksHero | PagesBlocksAbout | PagesBlocksEvents | PagesBlocksTeam_grid | PagesBlocksGoogle_form
+union PagesBlocks = PagesBlocksText | PagesBlocksYoutube | PagesBlocksGallery | PagesBlocksHero | PagesBlocksAbout | PagesBlocksEvents | PagesBlocksTeam_grid | PagesBlocksGoogle_form
 
 type Pages implements Node & Document {
   title: String!
@@ -135,10 +156,15 @@ input StringFilter {
   in: [String]
 }
 
-input PagesBlocksHeroFilter {
+input PagesBlocksTextFilter {
+  heading: StringFilter
+  text: StringFilter
+  alignment: StringFilter
+}
+
+input PagesBlocksYoutubeFilter {
   title: StringFilter
-  subtitle: StringFilter
-  color: StringFilter
+  videoUrl: StringFilter
 }
 
 input ImageFilter {
@@ -146,6 +172,22 @@ input ImageFilter {
   eq: String
   exists: Boolean
   in: [String]
+}
+
+input PagesBlocksGalleryImagesFilter {
+  src: ImageFilter
+  alt: StringFilter
+}
+
+input PagesBlocksGalleryFilter {
+  title: StringFilter
+  images: PagesBlocksGalleryImagesFilter
+}
+
+input PagesBlocksHeroFilter {
+  title: StringFilter
+  subtitle: StringFilter
+  color: StringFilter
 }
 
 input PagesBlocksAboutFilter {
@@ -171,6 +213,9 @@ input PagesBlocksGoogle_formFilter {
 }
 
 input PagesBlocksFilter {
+  text: PagesBlocksTextFilter
+  youtube: PagesBlocksYoutubeFilter
+  gallery: PagesBlocksGalleryFilter
   hero: PagesBlocksHeroFilter
   about: PagesBlocksAboutFilter
   events: PagesBlocksEventsFilter
@@ -263,6 +308,27 @@ input DocumentMutation {
   team: TeamMutation
 }
 
+input PagesBlocksTextMutation {
+  heading: String
+  text: String
+  alignment: String
+}
+
+input PagesBlocksYoutubeMutation {
+  title: String
+  videoUrl: String
+}
+
+input PagesBlocksGalleryImagesMutation {
+  src: String
+  alt: String
+}
+
+input PagesBlocksGalleryMutation {
+  title: String
+  images: [PagesBlocksGalleryImagesMutation]
+}
+
 input PagesBlocksHeroMutation {
   title: String
   subtitle: String
@@ -292,6 +358,9 @@ input PagesBlocksGoogle_formMutation {
 }
 
 input PagesBlocksMutation {
+  text: PagesBlocksTextMutation
+  youtube: PagesBlocksYoutubeMutation
+  gallery: PagesBlocksGalleryMutation
   hero: PagesBlocksHeroMutation
   about: PagesBlocksAboutMutation
   events: PagesBlocksEventsMutation

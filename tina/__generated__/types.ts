@@ -183,6 +183,31 @@ export type CollectionDocumentsArgs = {
 
 export type DocumentNode = Pages | Team | Folder;
 
+export type PagesBlocksText = {
+  __typename?: 'PagesBlocksText';
+  heading?: Maybe<Scalars['String']['output']>;
+  text?: Maybe<Scalars['String']['output']>;
+  alignment?: Maybe<Scalars['String']['output']>;
+};
+
+export type PagesBlocksYoutube = {
+  __typename?: 'PagesBlocksYoutube';
+  title?: Maybe<Scalars['String']['output']>;
+  videoUrl?: Maybe<Scalars['String']['output']>;
+};
+
+export type PagesBlocksGalleryImages = {
+  __typename?: 'PagesBlocksGalleryImages';
+  src?: Maybe<Scalars['String']['output']>;
+  alt?: Maybe<Scalars['String']['output']>;
+};
+
+export type PagesBlocksGallery = {
+  __typename?: 'PagesBlocksGallery';
+  title?: Maybe<Scalars['String']['output']>;
+  images?: Maybe<Array<Maybe<PagesBlocksGalleryImages>>>;
+};
+
 export type PagesBlocksHero = {
   __typename?: 'PagesBlocksHero';
   title?: Maybe<Scalars['String']['output']>;
@@ -216,7 +241,7 @@ export type PagesBlocksGoogle_Form = {
   height?: Maybe<Scalars['String']['output']>;
 };
 
-export type PagesBlocks = PagesBlocksHero | PagesBlocksAbout | PagesBlocksEvents | PagesBlocksTeam_Grid | PagesBlocksGoogle_Form;
+export type PagesBlocks = PagesBlocksText | PagesBlocksYoutube | PagesBlocksGallery | PagesBlocksHero | PagesBlocksAbout | PagesBlocksEvents | PagesBlocksTeam_Grid | PagesBlocksGoogle_Form;
 
 export type Pages = Node & Document & {
   __typename?: 'Pages';
@@ -234,10 +259,15 @@ export type StringFilter = {
   in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
-export type PagesBlocksHeroFilter = {
+export type PagesBlocksTextFilter = {
+  heading?: InputMaybe<StringFilter>;
+  text?: InputMaybe<StringFilter>;
+  alignment?: InputMaybe<StringFilter>;
+};
+
+export type PagesBlocksYoutubeFilter = {
   title?: InputMaybe<StringFilter>;
-  subtitle?: InputMaybe<StringFilter>;
-  color?: InputMaybe<StringFilter>;
+  videoUrl?: InputMaybe<StringFilter>;
 };
 
 export type ImageFilter = {
@@ -245,6 +275,22 @@ export type ImageFilter = {
   eq?: InputMaybe<Scalars['String']['input']>;
   exists?: InputMaybe<Scalars['Boolean']['input']>;
   in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export type PagesBlocksGalleryImagesFilter = {
+  src?: InputMaybe<ImageFilter>;
+  alt?: InputMaybe<StringFilter>;
+};
+
+export type PagesBlocksGalleryFilter = {
+  title?: InputMaybe<StringFilter>;
+  images?: InputMaybe<PagesBlocksGalleryImagesFilter>;
+};
+
+export type PagesBlocksHeroFilter = {
+  title?: InputMaybe<StringFilter>;
+  subtitle?: InputMaybe<StringFilter>;
+  color?: InputMaybe<StringFilter>;
 };
 
 export type PagesBlocksAboutFilter = {
@@ -270,6 +316,9 @@ export type PagesBlocksGoogle_FormFilter = {
 };
 
 export type PagesBlocksFilter = {
+  text?: InputMaybe<PagesBlocksTextFilter>;
+  youtube?: InputMaybe<PagesBlocksYoutubeFilter>;
+  gallery?: InputMaybe<PagesBlocksGalleryFilter>;
   hero?: InputMaybe<PagesBlocksHeroFilter>;
   about?: InputMaybe<PagesBlocksAboutFilter>;
   events?: InputMaybe<PagesBlocksEventsFilter>;
@@ -425,6 +474,27 @@ export type DocumentMutation = {
   team?: InputMaybe<TeamMutation>;
 };
 
+export type PagesBlocksTextMutation = {
+  heading?: InputMaybe<Scalars['String']['input']>;
+  text?: InputMaybe<Scalars['String']['input']>;
+  alignment?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type PagesBlocksYoutubeMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  videoUrl?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type PagesBlocksGalleryImagesMutation = {
+  src?: InputMaybe<Scalars['String']['input']>;
+  alt?: InputMaybe<Scalars['String']['input']>;
+};
+
+export type PagesBlocksGalleryMutation = {
+  title?: InputMaybe<Scalars['String']['input']>;
+  images?: InputMaybe<Array<InputMaybe<PagesBlocksGalleryImagesMutation>>>;
+};
+
 export type PagesBlocksHeroMutation = {
   title?: InputMaybe<Scalars['String']['input']>;
   subtitle?: InputMaybe<Scalars['String']['input']>;
@@ -454,6 +524,9 @@ export type PagesBlocksGoogle_FormMutation = {
 };
 
 export type PagesBlocksMutation = {
+  text?: InputMaybe<PagesBlocksTextMutation>;
+  youtube?: InputMaybe<PagesBlocksYoutubeMutation>;
+  gallery?: InputMaybe<PagesBlocksGalleryMutation>;
   hero?: InputMaybe<PagesBlocksHeroMutation>;
   about?: InputMaybe<PagesBlocksAboutMutation>;
   events?: InputMaybe<PagesBlocksEventsMutation>;
@@ -474,7 +547,7 @@ export type TeamMutation = {
   body?: InputMaybe<Scalars['JSON']['input']>;
 };
 
-export type PagesPartsFragment = { __typename: 'Pages', title: string, blocks?: Array<{ __typename: 'PagesBlocksHero', title?: string | null, subtitle?: string | null, color?: string | null } | { __typename: 'PagesBlocksAbout', title?: string | null, text?: string | null, image?: string | null, imageSide?: string | null } | { __typename: 'PagesBlocksEvents', title?: string | null, flyerImage?: string | null, color?: string | null } | { __typename: 'PagesBlocksTeam_grid', title?: string | null } | { __typename: 'PagesBlocksGoogle_form', url?: string | null, height?: string | null } | null> | null };
+export type PagesPartsFragment = { __typename: 'Pages', title: string, blocks?: Array<{ __typename: 'PagesBlocksText', heading?: string | null, text?: string | null, alignment?: string | null } | { __typename: 'PagesBlocksYoutube', title?: string | null, videoUrl?: string | null } | { __typename: 'PagesBlocksGallery', title?: string | null, images?: Array<{ __typename: 'PagesBlocksGalleryImages', src?: string | null, alt?: string | null } | null> | null } | { __typename: 'PagesBlocksHero', title?: string | null, subtitle?: string | null, color?: string | null } | { __typename: 'PagesBlocksAbout', title?: string | null, text?: string | null, image?: string | null, imageSide?: string | null } | { __typename: 'PagesBlocksEvents', title?: string | null, flyerImage?: string | null, color?: string | null } | { __typename: 'PagesBlocksTeam_grid', title?: string | null } | { __typename: 'PagesBlocksGoogle_form', url?: string | null, height?: string | null } | null> | null };
 
 export type TeamPartsFragment = { __typename: 'Team', name: string, role?: string | null, photo?: string | null, order?: number | null, body?: any | null };
 
@@ -483,7 +556,7 @@ export type PagesQueryVariables = Exact<{
 }>;
 
 
-export type PagesQuery = { __typename?: 'Query', pages: { __typename: 'Pages', id: string, title: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'PagesBlocksHero', title?: string | null, subtitle?: string | null, color?: string | null } | { __typename: 'PagesBlocksAbout', title?: string | null, text?: string | null, image?: string | null, imageSide?: string | null } | { __typename: 'PagesBlocksEvents', title?: string | null, flyerImage?: string | null, color?: string | null } | { __typename: 'PagesBlocksTeam_grid', title?: string | null } | { __typename: 'PagesBlocksGoogle_form', url?: string | null, height?: string | null } | null> | null } };
+export type PagesQuery = { __typename?: 'Query', pages: { __typename: 'Pages', id: string, title: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'PagesBlocksText', heading?: string | null, text?: string | null, alignment?: string | null } | { __typename: 'PagesBlocksYoutube', title?: string | null, videoUrl?: string | null } | { __typename: 'PagesBlocksGallery', title?: string | null, images?: Array<{ __typename: 'PagesBlocksGalleryImages', src?: string | null, alt?: string | null } | null> | null } | { __typename: 'PagesBlocksHero', title?: string | null, subtitle?: string | null, color?: string | null } | { __typename: 'PagesBlocksAbout', title?: string | null, text?: string | null, image?: string | null, imageSide?: string | null } | { __typename: 'PagesBlocksEvents', title?: string | null, flyerImage?: string | null, color?: string | null } | { __typename: 'PagesBlocksTeam_grid', title?: string | null } | { __typename: 'PagesBlocksGoogle_form', url?: string | null, height?: string | null } | null> | null } };
 
 export type PagesConnectionQueryVariables = Exact<{
   before?: InputMaybe<Scalars['String']['input']>;
@@ -495,7 +568,7 @@ export type PagesConnectionQueryVariables = Exact<{
 }>;
 
 
-export type PagesConnectionQuery = { __typename?: 'Query', pagesConnection: { __typename?: 'PagesConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PagesConnectionEdges', cursor: string, node?: { __typename: 'Pages', id: string, title: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'PagesBlocksHero', title?: string | null, subtitle?: string | null, color?: string | null } | { __typename: 'PagesBlocksAbout', title?: string | null, text?: string | null, image?: string | null, imageSide?: string | null } | { __typename: 'PagesBlocksEvents', title?: string | null, flyerImage?: string | null, color?: string | null } | { __typename: 'PagesBlocksTeam_grid', title?: string | null } | { __typename: 'PagesBlocksGoogle_form', url?: string | null, height?: string | null } | null> | null } | null } | null> | null } };
+export type PagesConnectionQuery = { __typename?: 'Query', pagesConnection: { __typename?: 'PagesConnection', totalCount: number, pageInfo: { __typename?: 'PageInfo', hasPreviousPage: boolean, hasNextPage: boolean, startCursor: string, endCursor: string }, edges?: Array<{ __typename?: 'PagesConnectionEdges', cursor: string, node?: { __typename: 'Pages', id: string, title: string, _sys: { __typename?: 'SystemInfo', filename: string, basename: string, hasReferences?: boolean | null, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, blocks?: Array<{ __typename: 'PagesBlocksText', heading?: string | null, text?: string | null, alignment?: string | null } | { __typename: 'PagesBlocksYoutube', title?: string | null, videoUrl?: string | null } | { __typename: 'PagesBlocksGallery', title?: string | null, images?: Array<{ __typename: 'PagesBlocksGalleryImages', src?: string | null, alt?: string | null } | null> | null } | { __typename: 'PagesBlocksHero', title?: string | null, subtitle?: string | null, color?: string | null } | { __typename: 'PagesBlocksAbout', title?: string | null, text?: string | null, image?: string | null, imageSide?: string | null } | { __typename: 'PagesBlocksEvents', title?: string | null, flyerImage?: string | null, color?: string | null } | { __typename: 'PagesBlocksTeam_grid', title?: string | null } | { __typename: 'PagesBlocksGoogle_form', url?: string | null, height?: string | null } | null> | null } | null } | null> | null } };
 
 export type TeamQueryVariables = Exact<{
   relativePath: Scalars['String']['input'];
@@ -522,6 +595,23 @@ export const PagesPartsFragmentDoc = gql`
   title
   blocks {
     __typename
+    ... on PagesBlocksText {
+      heading
+      text
+      alignment
+    }
+    ... on PagesBlocksYoutube {
+      title
+      videoUrl
+    }
+    ... on PagesBlocksGallery {
+      title
+      images {
+        __typename
+        src
+        alt
+      }
+    }
     ... on PagesBlocksHero {
       title
       subtitle

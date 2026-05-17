@@ -5,6 +5,7 @@ var config_default = defineConfig({
   branch,
   clientId: "3e4e883e-151a-4c9e-bba4-5116fc13ef14",
   token: "ea28290ca05575e2c1918c50012f06a0366d82de",
+  apiURL: "https://content.tinajs.io/content/3e4e883e-151a-4c9e-bba4-5116fc13ef14/github/main",
   build: {
     outputFolder: "admin",
     publicFolder: "public"
@@ -36,6 +37,40 @@ var config_default = defineConfig({
             name: "blocks",
             label: "Sections",
             templates: [
+              {
+                name: "text",
+                label: "Text Block",
+                fields: [
+                  { type: "string", name: "heading", label: "Heading" },
+                  { type: "string", name: "text", label: "Text", ui: { component: "textarea" } },
+                  { type: "string", name: "alignment", label: "Alignment", options: ["left", "center", "right"] }
+                ]
+              },
+              {
+                name: "youtube",
+                label: "YouTube Video",
+                fields: [
+                  { type: "string", name: "title", label: "Title" },
+                  { type: "string", name: "videoUrl", label: "YouTube URL" }
+                ]
+              },
+              {
+                name: "gallery",
+                label: "Photo Gallery",
+                fields: [
+                  { type: "string", name: "title", label: "Title" },
+                  {
+                    type: "object",
+                    list: true,
+                    name: "images",
+                    label: "Images",
+                    fields: [
+                      { type: "image", name: "src", label: "Image" },
+                      { type: "string", name: "alt", label: "Alt Text" }
+                    ]
+                  }
+                ]
+              },
               {
                 name: "hero",
                 label: "Hero Section",
