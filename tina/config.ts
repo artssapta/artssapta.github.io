@@ -5,10 +5,11 @@ const branch = process.env.HEAD || process.env.VERCEL_GIT_COMMIT_REF || process.
 
 export default defineConfig({
   branch: process.env.NEXT_PUBLIC_TINA_BRANCH || process.env.NEXT_PUBLIC_VERCEL_GIT_COMMIT_REF || "main",
-  clientId: "3e4e883e-151a-4c9e-bba4-5116fc13ef14",
-  token: "ea28290ca05575e2c1918c50012f06a0366d82de",
-  apiURL: "https://content.tinajs.io/content/3e4e883e-151a-4c9e-bba4-5116fc13ef14/github/main",
-  build: {
+  branch: "main",
+  clientId: "7e386a65-ff63-489e-93d2-339cfeeab35e",
+  token: "5e7c74c2c872835616282ba4e736c5865bc1c5c6",
+  apiURL: "https://content.tinajs.io/content/7e386a65-ff63-489e-93d2-339cfeeab35e/github/main",
+
     outputFolder: "admin",
     publicFolder: "public",
   },
