@@ -1,5 +1,5 @@
 {
   "rewrites": [
-    { "source": "/admin/:path*", "destination": "/admin/:path*" }
+    { "source": "/admin/(.*)", "destination": "/admin/$1" }
   ]
 }
