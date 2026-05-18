@@ -2,7 +2,7 @@
 import { defineConfig } from "tinacms";
 var branch = process.env.HEAD || process.env.VERCEL_GIT_COMMIT_REF || process.env.BRANCH || "main";
 var config_default = defineConfig({
-  branch,
+  branch: "main",
   clientId: "3e4e883e-151a-4c9e-bba4-5116fc13ef14",
   token: "ea28290ca05575e2c1918c50012f06a0366d82de",
   apiURL: "https://content.tinajs.io/content/3e4e883e-151a-4c9e-bba4-5116fc13ef14/github/main",
