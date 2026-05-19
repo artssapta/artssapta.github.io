@@ -1,3 +1,4 @@
+# Netlify configuration with increased memory for Tina CMS
 [build]
   command = "npm run build"
   publish = "dist"
