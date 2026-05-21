@@ -8,7 +8,7 @@
   },
   "scripts": {
     "dev": "tinacms dev -c \"astro dev\"",
-    "build": "export NODE_OPTIONS='--max-old-space-size=4096' && (if [ \"$NETLIFY\" = \"true\" ]; then echo 'Skipping Tina build on Netlify'; else tinacms build; fi) && astro build",
+    "build": "export NODE_OPTIONS='--max-old-space-size=4096' && (if [ \"$NETLIFY\" = \"true\" ] || [ \"$SITE_NAME\" != \"\" ]; then tinacms build --local --skip-indexing --skip-cloud-checks; else tinacms build; fi) && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
